@@ -8,4 +8,11 @@ router.get('/listar', async (req, res) => {
 	res.render('periodo_academico/listar', { periodo });
 });
 
+router.post('/agregar', async (req, res) => {
+	const newperiodo = req.body;
+	await pool.query('insert into periodos set ?', [newperiodo]);
+	res.redirect('listar');
+	console.log(req.body);
+});
+
 module.exports = router;

@@ -2,6 +2,7 @@ const express = require('express');
 const morgan = require('morgan');
 const exphbs = require('express-handlebars');
 const path = require('path');
+const methodoverride = require('method-override');
 // inicio
 const app = express();
 
@@ -17,7 +18,7 @@ app.engine(
 		layoutDir: path.join(app.get('views'), 'layouts'),
 		partialsDir: path.join(app.get('views'), 'partials'),
 		extname: '.hbs',
-		helpers: require('./lib/handlebars')
+		helpers: require('./lib/handlebars'),
 	})
 );
 app.set('view engine', '.hbs');
@@ -28,6 +29,7 @@ app.set('json spaces', 2);
 app.use(morgan('dev'));
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
+app.use(methodoverride());
 
 //variables globales
 app.use((req, res, next) => {
@@ -41,6 +43,9 @@ app.use('/links', require('./routes/links'));
 app.use('/estudiantes', require('./routes/estudiantes'));
 app.use('/docentes', require('./routes/docentes'));
 app.use('/periodos', require('./routes/periodos'));
+app.use('/asigna', require('./routes/asigna'));
+app.use('/materias', require('./routes/materias'));
+app.use('/notas', require('./routes/notas'));
 
 // public - navegador puede acceder
 app.use(express.static(path.join(__dirname, 'public')));

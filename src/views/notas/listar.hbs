@@ -1,0 +1,42 @@
+<div class="container">
+    <div class="row">
+        <div class="col-lg-8">
+            <h1 class="text-center">listar notas</h1>
+            <a class="btn btn-primary" href="agregar" role="button">agregar</a>
+            <table id="tabla" class="table table-striped table-bordered" style="width:100%">
+                <thead>
+                    <tr>
+                        <th scope="col">id</th>
+                        <th scope="col">estudiante</th>
+                        <th scope="col">docente</th>
+                        <th scope="col">materia</th>
+                        <th scope="col">periodo</th>
+                        <th scope="col">nota</th>
+                        <th scope="col">
+                            <center>accion</center>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each nota}}
+                    <tr>
+                        <td scope="row">{{id_nota}}</td>
+                        <td>{{id_estudiante}}</td>
+                        <td>{{id_docente}}</td>
+                        <td>{{id_materia}}</td>
+                        <td>{{id_periodo}}</td>
+                        <td>{{nota}}</td>
+                        <td>
+                            <center>
+                                <a href="" class="btn btn-danger">eliminar</a>
+                                <a href="" class="btn btn-info">modificar</a>
+                            </center>
+
+                        </td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

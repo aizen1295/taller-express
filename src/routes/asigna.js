@@ -3,8 +3,9 @@ const router = express.Router();
 const pool = require('../database');
 
 router.get('/listar', async (req, res) => {
-	const asigna = await pool.query('SELECT * FROM asigna_materia_docente');
-	console.log(asigna);
+	const asigna = await pool.query(
+		'SELECT id_asigna, d.nombre docente, m.materia, p.periodo FROM asigna_materia_docente a,docentes d,materias m,periodos p WHERE a.id_periodo = p.id_periodo AND a.id_docente = d.id_docente AND a.id_materia = m.id_materia'
+	);
 	res.render('asignar_materias/listar', { asigna });
 });
 
